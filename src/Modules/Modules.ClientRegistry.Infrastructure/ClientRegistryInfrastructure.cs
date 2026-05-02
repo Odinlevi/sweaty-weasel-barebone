@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modules.ClientRegistry.Infrastructure.EfCore;
+using Modules.ClientRegistry.Infrastructure.Repositories;
+using Modules.ClientRegistry.Infrastructure.Repositories.Implementations;
 
 namespace Modules.ClientRegistry.Infrastructure;
 
@@ -30,7 +32,7 @@ public static class ClientRegistryInfrastructure
             }
         );
 
-        //todo: repo
+        services.AddScoped(serviceType: typeof(IClientRepository), implementationType: typeof(ClientRepository));
 
         return builder;
     }
