@@ -7,9 +7,9 @@ namespace Modules.ClientRegistry.Domain.Inns;
 public class Inn : ValueObjectBase
 {
     // Private constructor for EF Core
-    private Inn()
-    {
-    }
+    // private Inn()
+    // {
+    // }
 
     private Inn(string value)
     {
@@ -32,6 +32,11 @@ public class Inn : ValueObjectBase
         if (clientType == ClientType.IndividualEntrepreneur && value.Length != 12)
             throw new DomainException("Individual Entrepreneur (ИП) INN must be exactly 12 digits.");
 
+        return new Inn(value);
+    }
+
+    public static Inn Of(string value)
+    {
         return new Inn(value);
     }
 

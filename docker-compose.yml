@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_DB: "ClientRegistryDb"
+    networks:
+      - client-registry
+    ports:
+      - "5432:5432"
+
+networks:
+  client-registry:
+    name: client-registry-network

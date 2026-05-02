@@ -1,9 +1,13 @@
+using Modules.ClientRegistry.Infrastructure;
+
 var builder  = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 builder.Configuration
     .AddJsonFile(path: "appsettings.json", optional: true)
     .AddEnvironmentVariables()
     .AddCommandLine(args);
+
+builder.AddClientRegistryInfrastructure("DefaultDb");
 
 builder.Host
     .UseDefaultServiceProvider((context, options) =>
