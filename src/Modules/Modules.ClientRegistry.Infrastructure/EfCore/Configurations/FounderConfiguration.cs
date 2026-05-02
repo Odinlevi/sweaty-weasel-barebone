@@ -27,14 +27,6 @@ public class FounderConfiguration : IEntityTypeConfiguration<Founder>
             .HasMaxLength(200)
             .IsRequired();
 
-        // Founder also uses the INN Value Object
-        // builder.OwnsOne(f => f.Inn, innBuilder =>
-        // {
-        //     innBuilder.Property(i => i.Value)
-        //         .HasMaxLength(12)
-        //         .IsRequired();
-        // });
-
         builder.Property(c => c.Inn)
             .HasConversion(
                 inn => inn.Value,
