@@ -19,27 +19,27 @@ public class Client : AggregateRoot<ClientId>
 
     #region Creation
 
-    public static Client Create(Inn inn, string name, ClientType clientType)
+    public static Client Create(Inn inn, string name, ClientType type)
     {
-        return new Client(inn: inn, name: name, clientType: clientType);
+        return new Client(inn: inn, name: name, type: type);
     }
 
     #endregion
 
     #region Constructors
 
-    private Client(ClientId id, Inn inn, string name, ClientType clientType) : base(id)
+    private Client(ClientId id, Inn inn, string name, ClientType type) : base(id)
     {
         Inn  = inn ?? throw new ArgumentNullException(nameof(inn));
         Name = string.IsNullOrWhiteSpace(name) ? throw new DomainException("Client name cannot be empty.") : name;
-        Type = clientType;
+        Type = type;
 
         CreatedAt = DateTime.UtcNow;
         UpdatedAt = DateTime.UtcNow;
     }
 
-    private Client(Inn inn, string name, ClientType clientType) : this(
-        id: ClientId.New, inn: inn, name: name, clientType: clientType
+    private Client(Inn inn, string name, ClientType type) : this(
+        id: ClientId.New, inn: inn, name: name, type: type
     )
     {
     }

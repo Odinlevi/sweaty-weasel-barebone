@@ -1,0 +1,10 @@
+dotnet ef migrations add Initialize `
+-p src\Modules\Modules.ClientRegistry.Infrastructure `
+-s src\Modules\Modules.ClientRegistry.WebApi `
+-c ClientRegistryDbContext `
+-o EfCore\Migrations
+
+dotnet ef database update `
+-p src\Modules\Modules.ClientRegistry.Infrastructure `
+-s src\Modules\Modules.ClientRegistry.WebApi `
+-c ClientRegistryDbContext
