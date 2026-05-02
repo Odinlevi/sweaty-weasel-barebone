@@ -6,7 +6,7 @@ namespace Modules.ClientRegistry.Infrastructure.Repositories.Implementations;
 
 public class ClientRepository(DbContext dbContext) : IClientRepository
 {
-    #region Implementation of IRepository<TAggregate>
+    #region Implementation of IClientRepository
 
     public IQueryable<Client> AsQueryable()
     {
