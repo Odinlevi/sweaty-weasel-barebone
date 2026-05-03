@@ -1,4 +1,4 @@
-namespace Modules.ClientRegistry.Application.Queries.ClientQueries;
+namespace Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
 
 public class GetClientCollectionRequest : IClientRegistryQueryRequest<GetClientCollectionResult>
 {

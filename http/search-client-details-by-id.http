@@ -1,0 +1,3 @@
+### Search client by id
+GET http://localhost:5234/api/clients/f72d24f3-17c4-4ca4-a8e5-63fa1a37cd16
+Accept: application/json
