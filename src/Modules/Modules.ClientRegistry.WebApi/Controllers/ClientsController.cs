@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Modules.ClientRegistry.Application.Commands.ClientCommands.CreateClient;
+using Modules.ClientRegistry.Application.Queries.ClientQueries;
 using Modules.ClientRegistry.Domain.Clients;
 
 namespace Modules.ClientRegistry.WebApi.Controllers;
@@ -10,10 +11,21 @@ namespace Modules.ClientRegistry.WebApi.Controllers;
 public class ClientsController(ISender sender) : ControllerBase
 {
     /// <summary>
-    /// Create new Client
+    /// Create a new client
     /// </summary>
-    /// <param name="command"></param>
-    /// <returns></returns>
+    /// <param name="command">Command containing client data to create</param>
+    /// <returns>Created client response with client ID and location header</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /api/clients
+    ///     {
+    ///       "name": "Acme Corporation",
+    ///       "inn": "1234567890",
+    ///       "clientType": "LegalEntity"
+    ///     }
+    ///
+    /// </remarks>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -32,5 +44,38 @@ public class ClientsController(ISender sender) : ControllerBase
     public async Task<IActionResult> GetById(ClientId clientId)
     {
         throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Search clients by name with pagination support
+    /// </summary>
+    /// <param name="searchTerm">Optional search term to filter clients by name</param>
+    /// <param name="pageIndex">Page number for pagination (default: 1)</param>
+    /// <param name="pageSize">Number of records per page (default: 10)</param>
+    /// <returns>Collection of clients matching the search criteria</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /api/clients?searchTerm=Acme&amp;pageIndex=1&amp;pageSize=10
+    ///
+    /// </remarks>
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> SearchClientsByName(
+        string? searchTerm = null,
+        int     pageIndex  = 1,
+        int     pageSize   = 10)
+    {
+        var request = new GetClientCollectionRequest
+        {
+            SearchTerm = searchTerm,
+            PageIndex  = pageIndex,
+            PageSize   = pageSize
+        };
+
+        var response = await sender.Send(request);
+        return Ok(value: response);
     }
 }

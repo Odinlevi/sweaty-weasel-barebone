@@ -1,0 +1,7 @@
+### Search clients by name (no params)
+GET http://localhost:5234/api/clients
+Accept: application/json
+
+### Search clients by name (with params)
+GET http://localhost:5234/api/clients?searchTerm=Test&pageSize=1
+Accept: application/json

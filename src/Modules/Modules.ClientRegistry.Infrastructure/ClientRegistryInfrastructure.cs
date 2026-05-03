@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modules.ClientRegistry.Application.Commands;
+using Modules.ClientRegistry.Application.Queries;
 using Modules.ClientRegistry.Domain.SeedWork;
 using Modules.ClientRegistry.Infrastructure.EfCore;
 using Modules.ClientRegistry.Infrastructure.Repositories;
@@ -28,8 +29,9 @@ public static class ClientRegistryInfrastructure
 
 
         var commandAssembly = typeof(IClientRegistryCommand<>).Assembly;
+        var queryAssembly   = typeof(IClientRegistryQueryRequest<>).Assembly;
 
-        builder.AddCustomMediatR(commandAssembly);
+        builder.AddCustomMediatR(commandAssembly, queryAssembly);
 
         var services = builder.Services;
 
