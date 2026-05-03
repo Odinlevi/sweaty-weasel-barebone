@@ -1,7 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Modules.ClientRegistry.Application.Commands.ClientCommands.CreateClient;
-using Modules.ClientRegistry.Application.Queries.ClientQueries;
+using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
+using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientDetailsById;
 using Modules.ClientRegistry.Domain.Clients;
 
 namespace Modules.ClientRegistry.WebApi.Controllers;
@@ -43,7 +44,13 @@ public class ClientsController(ISender sender) : ControllerBase
     [HttpGet("{clientId}")]
     public async Task<IActionResult> GetById(ClientId clientId)
     {
-        throw new NotImplementedException();
+        var request = new GetClientDetailsByIdRequest
+        {
+            ClientId = clientId
+        };
+
+        var response = await sender.Send(request);
+        return Ok(value: response);
     }
 
     /// <summary>

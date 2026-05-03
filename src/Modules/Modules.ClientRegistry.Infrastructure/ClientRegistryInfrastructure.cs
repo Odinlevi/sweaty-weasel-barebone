@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.ComponentModel;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Modules.ClientRegistry.Application.Commands;
 using Modules.ClientRegistry.Application.Queries;
+using Modules.ClientRegistry.Domain;
 using Modules.ClientRegistry.Domain.SeedWork;
 using Modules.ClientRegistry.Infrastructure.EfCore;
 using Modules.ClientRegistry.Infrastructure.Repositories;
@@ -42,6 +44,13 @@ public static class ClientRegistryInfrastructure
         );
 
         services.AddScoped(serviceType: typeof(IRepository<,>), implementationType: typeof(Repository<,>));
+
+        StronglyTypedIdTypeDescriptor.AddStronglyTypedIdConverter(idType =>
+            {
+                var typeOfIdentity = typeof(StronglyTypedIdConverter<>).MakeGenericType(idType);
+                TypeDescriptor.AddAttributes(type: idType, new TypeConverterAttribute(typeOfIdentity));
+            }
+        );
 
         return builder;
     }

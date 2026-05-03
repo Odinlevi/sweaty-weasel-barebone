@@ -2,7 +2,7 @@ using Modules.ClientRegistry.Domain.Clients;
 using Modules.ClientRegistry.Domain.ClientTypes;
 using Modules.ClientRegistry.Domain.Inns;
 
-namespace Modules.ClientRegistry.Application.Queries.ClientQueries;
+namespace Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
 
 public class GetClientCollectionResult
 {

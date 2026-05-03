@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Modules.ClientRegistry.Domain.Clients;
 using Modules.ClientRegistry.Domain.SeedWork;
 
-namespace Modules.ClientRegistry.Application.Queries.ClientQueries;
+namespace Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
 
 public class RequestHandler(IRepository<Client, ClientId> clientRepository)
     : IRequestHandler<GetClientCollectionRequest, GetClientCollectionResult>
