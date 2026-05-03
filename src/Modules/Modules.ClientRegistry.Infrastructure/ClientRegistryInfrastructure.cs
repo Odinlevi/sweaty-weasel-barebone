@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Modules.ClientRegistry.Application.Commands;
+using Modules.ClientRegistry.Domain.SeedWork;
 using Modules.ClientRegistry.Infrastructure.EfCore;
 using Modules.ClientRegistry.Infrastructure.Repositories;
-using Modules.ClientRegistry.Infrastructure.Repositories.Implementations;
+using Shared.Infrastructure.MediatR;
 
 namespace Modules.ClientRegistry.Infrastructure;
 
@@ -24,6 +26,11 @@ public static class ClientRegistryInfrastructure
                 $"{nameof(ClientRegistryInfrastructure)}' is not found."
             );
 
+
+        var commandAssembly = typeof(IClientRegistryCommand<>).Assembly;
+
+        builder.AddCustomMediatR(commandAssembly);
+
         var services = builder.Services;
 
         services.AddDbContextPool<DbContext, ClientRegistryDbContext>(options =>
@@ -32,7 +39,7 @@ public static class ClientRegistryInfrastructure
             }
         );
 
-        services.AddScoped(serviceType: typeof(IClientRepository), implementationType: typeof(ClientRepository));
+        services.AddScoped(serviceType: typeof(IRepository<,>), implementationType: typeof(Repository<,>));
 
         return builder;
     }
