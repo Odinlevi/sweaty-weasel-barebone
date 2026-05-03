@@ -1,0 +1,26 @@
+### POST create new client (individual entrepreneur)
+POST http://localhost:5234/api/clients
+Content-Type: application/json
+
+{
+  "inn": "123456789013",
+  "name": "Test Client2",
+  "type": 2
+}
+
+### POST create new client (legal entity)
+POST http://localhost:5234/api/clients
+Content-Type: application/json
+
+{
+  "inn": "1234567890",
+  "name": "Test Legal Client",
+  "type": 1,
+  "founders": [
+    {
+      "inn": "113456789012",
+      "fullName": "Test Founder",
+      "type": 1
+    }
+  ]
+}
