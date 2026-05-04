@@ -19,8 +19,63 @@ Content-Type: application/json
   "founders": [
     {
       "inn": "113456789012",
-      "fullName": "Test Founder",
-      "type": 1
+      "fullName": "Test Founder"
     }
+  ]
+}
+
+### POST create new client (legal entity), should fail
+POST http://localhost:5234/api/clients
+Content-Type: application/json
+
+{
+  "inn": "1234567899",
+  "name": "Test Legal Client fail",
+  "type": 1,
+  "founders": [
+    {
+      "inn": "113456789012",
+      "fullName": "Test Founder1"
+    },
+    {
+      "inn": "213456789112",
+      "fullName": "Test Founder2"
+    },
+    {
+      "inn": "313456789212",
+      "fullName": "Test Founder3"
+    },
+    {
+      "inn": "413456789312",
+      "fullName": "Test Founder4"
+    },
+    {
+      "inn": "513456789312",
+      "fullName": "Test Founder5"
+    },
+    {
+      "inn": "613456789312",
+      "fullName": "Test Founder6"
+    },
+    {
+      "inn": "713456789312",
+      "fullName": "Test Founder7"
+    },
+    {
+      "inn": "813456789312",
+      "fullName": "Test Founder8"
+    },
+    {
+      "inn": "913456789312",
+      "fullName": "Test Founder9"
+    },
+    {
+      "inn": "123456789312",
+      "fullName": "Test Founder10"
+    },
+    {
+      "inn": "133456789312",
+      "fullName": "Test Founder11"
+    },
   ]
 }

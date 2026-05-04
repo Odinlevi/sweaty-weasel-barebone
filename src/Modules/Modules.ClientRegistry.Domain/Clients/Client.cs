@@ -58,6 +58,9 @@ public class Client : AggregateRoot<ClientId>
         if (_founders.Any(f => f.Inn == founderInn))
             throw new DomainException("A founder with this INN already exists for this client.");
 
+        if (_founders.Count >= 10)
+            throw new DomainException("A client cannot have more than 10 founders.");
+
         var founder = Founder.Create(inn: founderInn, fullName: fullName);
         _founders.Add(founder);
 

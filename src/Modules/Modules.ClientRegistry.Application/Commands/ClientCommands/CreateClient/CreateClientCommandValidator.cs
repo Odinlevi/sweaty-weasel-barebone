@@ -28,6 +28,10 @@ public class CreateClientCommandValidator : AbstractValidator<CreateClientComman
             .When(x => x.Type == ClientType.LegalEntity)
             .WithMessage("A Legal Entity must have at least one founder.");
 
+        RuleFor(x => x.Founders)
+            .Must(founders => founders.Count <= 10)
+            .WithMessage("A client cannot have more than 10 founders.");
+
         When(
             predicate: x => x.Founders.Count != 0, action: () =>
             {
