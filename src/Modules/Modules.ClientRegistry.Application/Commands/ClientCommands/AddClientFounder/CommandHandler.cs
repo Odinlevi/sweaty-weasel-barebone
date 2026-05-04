@@ -1,4 +1,6 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Modules.ClientRegistry.Application.Commands.Exceptions;
 using Modules.ClientRegistry.Domain.Clients;
 using Modules.ClientRegistry.Domain.ClientTypes;
 using Modules.ClientRegistry.Domain.Inns;
@@ -12,10 +14,14 @@ public class CommandHandler(IRepository<Client, ClientId> repository)
     public async Task<AddClientFounderResult> Handle(AddClientFounderCommand request,
                                                      CancellationToken       cancellationToken)
     {
-        var client = await repository.FindOneAsync(x => x.Id == request.ClientId);
+        var client = await repository.AsQueryable()
+            .Include(c => c.Founders)
+            .FirstOrDefaultAsync(predicate: c => c.Id == request.ClientId, cancellationToken: cancellationToken);
 
         if (client is null)
-            throw new InvalidOperationException($"Client with id {request.ClientId} not found.");
+            throw new NotFoundEntityException(
+                $"Client with id {request.ClientId} not found."
+            );
 
         var founder = client.AddFounder(
             // actually, there can be both LE and IE founders, but the task kind of mentions only IE, so i roll with it.
