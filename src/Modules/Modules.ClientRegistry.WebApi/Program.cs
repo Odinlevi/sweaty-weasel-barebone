@@ -5,6 +5,7 @@ using Microsoft.OpenApi;
 using Modules.ClientRegistry.Infrastructure;
 using Modules.ClientRegistry.WebApi.Infrastructures;
 using Modules.ClientRegistry.WebApi.Infrastructures.JsonConverters;
+using Modules.ClientRegistry.WebApi.Infrastructures.Middlewares;
 
 var builder  = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -54,6 +55,8 @@ if (env.IsDevelopment())
     app.UseDeveloperExceptionPage();
     app.UseSwaggerMiddleware();
 }
+
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
 app.UseRouting();
 app.MapControllers();
