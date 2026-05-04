@@ -1,0 +1,12 @@
+### POST add new founder to client
+POST http://localhost:5234/api/clients/f72d24f3-17c4-4ca4-a8e5-63fa1a37cd16/founders
+Content-Type: application/json
+
+{
+  "founderInn": "113456789015",
+  "founderFullName": "Add Test Founder",
+}
+
+### DELETE remove founder from client
+DELETE http://localhost:5234/api/clients/f72d24f3-17c4-4ca4-a8e5-63fa1a37cd16/founders/42da8adc-5821-414e-831d-8027db3e94e4
+Accept: application/json

@@ -48,7 +48,7 @@ public class Client : AggregateRoot<ClientId>
 
     #region Behaviors
 
-    public void AddFounder(Inn founderInn, string fullName)
+    public Founder AddFounder(Inn founderInn, string fullName)
     {
         // THE CORE BUSINESS RULE
         if (Type == ClientType.IndividualEntrepreneur)
@@ -62,9 +62,10 @@ public class Client : AggregateRoot<ClientId>
         _founders.Add(founder);
 
         UpdateTimestamp();
+
+        return founder;
     }
 
-    // might not be needed.
     public void RemoveFounder(Guid founderId)
     {
         var founder = _founders.FirstOrDefault(f => f.Id.Id == founderId);
