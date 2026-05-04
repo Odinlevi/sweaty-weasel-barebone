@@ -39,21 +39,14 @@ docker-compose up -d
 The application uses EF Core Code-First.
 To generate the tables, run commands from [Migration.txt](./src/Modules/Modules.ClientRegistry.Infrastructure/EfCore/Migration.txt).
 
-### 3. Run the API
-Start the application via your IDE or using the CLI:
-
-```bash
-dotnet run
-```
-
-### 4. Explore the API
-Once running, navigate to the Swagger UI to explore and test the endpoints:
-👉 https://localhost:<port>/
+### 3. Explore the API
+Run the API. Once running, navigate to the Swagger UI to explore and test the endpoints:
+👉 https://localhost:port/
 
 You can also find http request examples in [http](./http) folder.
 
-### 5. Notes
+### 4. Notes
  - **Individual Entrepreneurs (ИП)** do not have founders; their INN (ИНН) should be exactly 12 digits long.
  - **Legal Entities (ЮЛ)** must have at least one founders; their INN should be exactly 10 digits long.
- - *Funders (Учредители)* are never considered to be LE; their INN should be exactly 12 digits long; amount of founders is limited to 100 per LE.
- - INNs are only checked for uniquenes among founders of one client;~~~~
+ - **Funders (Учредители)** are never considered to be LE; their INN should be exactly 12 digits long; amount of founders is limited to 100 per LE.
+ - INNs are only checked for uniquenes among founders of one client;
