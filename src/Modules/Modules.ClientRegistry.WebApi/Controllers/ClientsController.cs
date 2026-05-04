@@ -23,7 +23,7 @@ public class ClientsController(ISender sender) : ControllerBase
     ///     {
     ///       "name": "Acme Corporation",
     ///       "inn": "1234567890",
-    ///       "clientType": "LegalEntity"
+    ///       "clientType": 1
     ///     }
     ///
     /// </remarks>
@@ -41,6 +41,17 @@ public class ClientsController(ISender sender) : ControllerBase
         );
     }
 
+    /// <summary>
+    /// Get client details by client identifier
+    /// </summary>
+    /// <param name="clientId">Unique identifier of the client</param>
+    /// <returns>Client details for the specified client ID</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     GET /api/clients/{clientId}
+    ///
+    /// </remarks>
     [HttpGet("{clientId}")]
     public async Task<IActionResult> GetById(ClientId clientId)
     {
