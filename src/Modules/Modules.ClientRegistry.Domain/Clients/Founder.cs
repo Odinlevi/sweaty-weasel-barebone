@@ -45,4 +45,24 @@ public class Founder : EntityBase<FounderId>
     }
 
     #endregion
+
+    #region Behaviors
+
+    public void UpdateFullName(string newFullName)
+    {
+        if (string.IsNullOrWhiteSpace(newFullName))
+            throw new DomainException("Full name cannot be null or empty.");
+
+        FullName = newFullName;
+
+        UpdateTimestamp();
+    }
+
+
+    private void UpdateTimestamp()
+    {
+        UpdatedAt = DateTime.UtcNow;
+    }
+
+    #endregion
 }

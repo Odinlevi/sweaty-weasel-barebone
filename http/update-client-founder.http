@@ -1,0 +1,7 @@
+### PUT request update founder from client
+PUT http://localhost:5234/api/clients/f72d24f3-17c4-4ca4-a8e5-63fa1a37cd16/founders/1a72626f-2c17-4373-be69-c2d9a61d8524
+Content-Type: application/json
+
+{
+  "founderFullName": "Updated Test Founder"
+}
