@@ -4,7 +4,7 @@ using Modules.ClientRegistry.Application.Commands.Exceptions;
 using Modules.ClientRegistry.Domain.Clients;
 using Modules.ClientRegistry.Domain.SeedWork;
 
-namespace Modules.ClientRegistry.Application.Commands.ClientFounderCommands.RemoveClientFounder;
+namespace Modules.ClientRegistry.Application.Commands.ClientCommands.RemoveClientFounder;
 
 public class CommandHandler(IRepository<Client, ClientId> repository)
     : IRequestHandler<RemoveClientFounderCommand, RemoveClientFounderResult>

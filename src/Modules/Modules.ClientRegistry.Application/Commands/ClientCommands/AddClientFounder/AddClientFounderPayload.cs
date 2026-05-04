@@ -1,4 +1,4 @@
-namespace Modules.ClientRegistry.Application.Commands.ClientFounderCommands.AddClientFounder;
+namespace Modules.ClientRegistry.Application.Commands.ClientCommands.AddClientFounder;
 
 public class AddClientFounderPayload
 {

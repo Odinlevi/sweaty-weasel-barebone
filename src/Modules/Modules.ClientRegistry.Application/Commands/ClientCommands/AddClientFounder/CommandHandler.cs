@@ -4,7 +4,7 @@ using Modules.ClientRegistry.Domain.ClientTypes;
 using Modules.ClientRegistry.Domain.Inns;
 using Modules.ClientRegistry.Domain.SeedWork;
 
-namespace Modules.ClientRegistry.Application.Commands.ClientFounderCommands.AddClientFounder;
+namespace Modules.ClientRegistry.Application.Commands.ClientCommands.AddClientFounder;
 
 public class CommandHandler(IRepository<Client, ClientId> repository)
     : IRequestHandler<AddClientFounderCommand, AddClientFounderResult>
