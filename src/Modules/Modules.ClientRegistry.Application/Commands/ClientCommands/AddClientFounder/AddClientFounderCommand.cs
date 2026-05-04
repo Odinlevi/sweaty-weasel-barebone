@@ -1,6 +1,6 @@
 using Modules.ClientRegistry.Domain.Clients;
 
-namespace Modules.ClientRegistry.Application.Commands.ClientFounderCommands.AddClientFounder;
+namespace Modules.ClientRegistry.Application.Commands.ClientCommands.AddClientFounder;
 
 public class AddClientFounderCommand : IClientRegistryCommand<AddClientFounderResult>
 {

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Modules.ClientRegistry.Application.Commands.ClientFounderCommands.AddClientFounder;
-using Modules.ClientRegistry.Application.Commands.ClientFounderCommands.RemoveClientFounder;
+using Modules.ClientRegistry.Application.Commands.ClientCommands.AddClientFounder;
+using Modules.ClientRegistry.Application.Commands.ClientCommands.RemoveClientFounder;
 using Modules.ClientRegistry.Domain.Clients;
 
 namespace Modules.ClientRegistry.WebApi.Controllers;

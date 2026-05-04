@@ -1,7 +1,7 @@
 using FluentValidation;
 using Modules.ClientRegistry.Domain.Clients;
 
-namespace Modules.ClientRegistry.Application.Commands.ClientFounderCommands.AddClientFounder;
+namespace Modules.ClientRegistry.Application.Commands.ClientCommands.AddClientFounder;
 
 public class AddClientFounderCommandValidator : AbstractValidator<AddClientFounderCommand>
 {
