@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Modules.ClientRegistry.Application.Commands.ClientCommands.CreateClient;
+using Modules.ClientRegistry.Application.Commands.ClientCommands.UpdateClient;
 using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
 using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientDetailsById;
 using Modules.ClientRegistry.Domain.Clients;
@@ -53,6 +54,10 @@ public class ClientsController(ISender sender) : ControllerBase
     ///
     /// </remarks>
     [HttpGet("{clientId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetById(ClientId clientId)
     {
         var request = new GetClientDetailsByIdRequest
@@ -94,6 +99,17 @@ public class ClientsController(ISender sender) : ControllerBase
         };
 
         var response = await sender.Send(request);
+        return Ok(value: response);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UpdateClient([FromBody] UpdateClientCommand command)
+    {
+        var response = await sender.Send(command);
         return Ok(value: response);
     }
 }
