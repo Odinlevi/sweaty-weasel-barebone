@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Modules.ClientRegistry.Infrastructure.EfCore.Migrations
 {
     [DbContext(typeof(ClientRegistryDbContext))]
-    [Migration("20260502134031_Initialize")]
+    [Migration("20260504133713_Initialize")]
     partial class Initialize
     {
         /// <inheritdoc />
@@ -28,27 +28,33 @@ namespace Modules.ClientRegistry.Infrastructure.EfCore.Migrations
             modelBuilder.Entity("Modules.ClientRegistry.Domain.Clients.Client", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<string>("Inn")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("character varying(12)");
+                        .HasColumnType("character varying(12)")
+                        .HasColumnName("inn");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("text")
+                        .HasColumnName("name");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<uint>("Version")
                         .IsConcurrencyToken()
@@ -56,34 +62,41 @@ namespace Modules.ClientRegistry.Infrastructure.EfCore.Migrations
                         .HasColumnType("xid")
                         .HasColumnName("xmin");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_clients");
 
-                    b.ToTable("Clients");
+                    b.ToTable("clients", (string)null);
                 });
 
             modelBuilder.Entity("Modules.ClientRegistry.Domain.Clients.Founder", b =>
                 {
                     b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<Guid>("ClientId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("client_id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("character varying(200)")
+                        .HasColumnName("full_name");
 
                     b.Property<string>("Inn")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("character varying(12)");
+                        .HasColumnType("character varying(12)")
+                        .HasColumnName("inn");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.Property<uint>("Version")
                         .IsConcurrencyToken()
@@ -91,11 +104,13 @@ namespace Modules.ClientRegistry.Infrastructure.EfCore.Migrations
                         .HasColumnType("xid")
                         .HasColumnName("xmin");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_founders");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId")
+                        .HasDatabaseName("ix_founders_client_id");
 
-                    b.ToTable("Founder");
+                    b.ToTable("founders", (string)null);
                 });
 
             modelBuilder.Entity("Modules.ClientRegistry.Domain.Clients.Founder", b =>
@@ -104,7 +119,8 @@ namespace Modules.ClientRegistry.Infrastructure.EfCore.Migrations
                         .WithMany("Founders")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_founders_clients_client_id");
                 });
 
             modelBuilder.Entity("Modules.ClientRegistry.Domain.Clients.Client", b =>
