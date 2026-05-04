@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Modules.ClientRegistry.Application.Commands.ClientCommands.CreateClient;
+using Modules.ClientRegistry.Application.Commands.ClientCommands.DeleteClient;
 using Modules.ClientRegistry.Application.Commands.ClientCommands.UpdateClient;
 using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientCollection;
 using Modules.ClientRegistry.Application.Queries.ClientQueries.GetClientDetailsById;
@@ -102,6 +103,21 @@ public class ClientsController(ISender sender) : ControllerBase
         return Ok(value: response);
     }
 
+    /// <summary>
+    /// Update an existing client
+    /// </summary>
+    /// <param name="command">Command containing updated client data</param>
+    /// <returns>Updated client response</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     PUT /api/clients
+    ///     {
+    ///       "clientId": "{clientId}",
+    ///       "clientName": "Acme Corporation Updated",
+    ///     }
+    ///
+    /// </remarks>
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -109,6 +125,32 @@ public class ClientsController(ISender sender) : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> UpdateClient([FromBody] UpdateClientCommand command)
     {
+        var response = await sender.Send(command);
+        return Ok(value: response);
+    }
+
+    /// <summary>
+    /// Delete a client by client identifier
+    /// </summary>
+    /// <param name="clientId">Unique identifier of the client to delete</param>
+    /// <returns>Deletion result for the specified client ID</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     DELETE /api/clients/{clientId}
+    ///
+    /// </remarks>
+    [HttpDelete("{clientId}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteClient(ClientId clientId)
+    {
+        var command = new DeleteClientCommand
+        {
+            ClientId = clientId
+        };
         var response = await sender.Send(command);
         return Ok(value: response);
     }
