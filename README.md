@@ -1,8 +1,8 @@
 # Client Registry API 🏢
 
-A  RESTful API built with **ASP.NET Core** for managing client base of individual entrepreneurs (IEs) and legal entities (LLCs), along with their founders.
+A  RESTful API built with **ASP.NET Core** for managing a client base of individual entrepreneurs (ИП) and legal entities (ЮЛ), along with their founders.
 
-This project was developed as a technical assessment. Text of assesment can be found in [CHALLENGE.MD](./CHALLENGE.MD).
+This project was developed as a technical assessment. Text of assessment can be found in [CHALLENGE.MD](./CHALLENGE.MD).
 
 ## 🏗 Architecture & Patterns
 
@@ -30,7 +30,7 @@ To run this project locally, ensure you have the following installed:
 ## 🛠 Getting Started
 
 ### 1. Spin up the Database
-A `docker-compose.yml` file is included in the root directory to easily spin up a PostgreSQL instance.
+A `docker-compose.yml` file is included in the root directory to spin up a PostgreSQL instance easily.
 ```bash
 docker-compose up -d
 ```
@@ -47,6 +47,6 @@ You can also find http request examples in [http](./http) folder.
 
 ### 4. Notes
  - **Individual Entrepreneurs (ИП)** do not have founders; their INN (ИНН) should be exactly 12 digits long.
- - **Legal Entities (ЮЛ)** must have at least one founders; their INN should be exactly 10 digits long.
- - **Funders (Учредители)** are never considered to be LE; their INN should be exactly 12 digits long; amount of founders is limited to 100 per LE.
- - INNs are only checked for uniquenes among founders of one client;
+ - **Legal Entities (ЮЛ)** must have at least one founder; their INN should be exactly 10 digits long.
+ - **Funders (Учредители)** are never considered to be LE; their INN should be exactly 12 digits long; the number of founders is limited to 10 per LE.
+ - INNs are only checked for uniqueness among the founders of one client.
