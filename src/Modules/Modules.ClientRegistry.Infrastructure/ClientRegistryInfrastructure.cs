@@ -40,6 +40,8 @@ public static class ClientRegistryInfrastructure
         services.AddDbContextPool<DbContext, ClientRegistryDbContext>(options =>
             {
                 options.UseNpgsql(connectionString);
+
+                options.UseSnakeCaseNamingConvention();
             }
         );
 

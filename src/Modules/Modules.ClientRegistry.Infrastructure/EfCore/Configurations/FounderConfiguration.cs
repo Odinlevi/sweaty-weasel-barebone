@@ -11,6 +11,8 @@ public class FounderConfiguration : IEntityTypeConfiguration<Founder>
 
     public void Configure(EntityTypeBuilder<Founder> builder)
     {
+        builder.ToTable("founders");
+
         builder.HasKey(f => f.Id);
 
         builder.Property(c => c.Id)
@@ -29,8 +31,8 @@ public class FounderConfiguration : IEntityTypeConfiguration<Founder>
 
         builder.Property(c => c.Inn)
             .HasConversion(
-                inn => inn.Value,
-                dbString => Inn.Of(dbString)
+                convertToProviderExpression: inn => inn.Value,
+                convertFromProviderExpression: dbString => Inn.Of(dbString)
             )
             .HasMaxLength(12)
             .IsRequired();
