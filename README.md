@@ -2,7 +2,7 @@
 
 A  RESTful API built with **ASP.NET Core** for managing client base of individual entrepreneurs (IEs) and legal entities (LLCs), along with their founders.
 
-This project was developed as a technical assessment. Text of assesment can be found in [CHALLENGE.MD](./CHALLENGE.MD~~~~).
+This project was developed as a technical assessment. Text of assesment can be found in [CHALLENGE.MD](./CHALLENGE.MD).
 
 ## 🏗 Architecture & Patterns
 
