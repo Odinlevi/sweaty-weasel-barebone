@@ -27,7 +27,7 @@ public class ClientFoundersController(ISender sender) : ControllerBase
     ///     }
     /// </remarks>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(AddClientFounderResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -58,7 +58,7 @@ public class ClientFoundersController(ISender sender) : ControllerBase
     ///     DELETE /api/clients/{clientId}/founders/{founderId}
     /// </remarks>
     [HttpDelete("{founderId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(RemoveClientFounderResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -90,7 +90,7 @@ public class ClientFoundersController(ISender sender) : ControllerBase
     ///     }
     /// </remarks>
     [HttpPut("{founderId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(UpdateClientFounderResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]

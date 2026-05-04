@@ -1,8 +1,10 @@
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using Microsoft.OpenApi;
 using Modules.ClientRegistry.Infrastructure;
-using Modules.ClientRegistry.WebApi.Infrastructure;
+using Modules.ClientRegistry.WebApi.Infrastructures;
+using Modules.ClientRegistry.WebApi.Infrastructures.JsonConverters;
 
 var builder  = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -33,6 +35,9 @@ services.ConfigureHttpJsonOptions(options =>
     }
 );
 
+services.AddOpenApi(options => { options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0; });
+services.AddSwaggerConfig();
+
 builder.Host
     .UseDefaultServiceProvider((context, options) =>
         {
@@ -44,10 +49,16 @@ builder.Host
 var app = builder.Build();
 var env = builder.Environment;
 
-if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+if (env.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseSwaggerMiddleware();
+}
 
 app.UseRouting();
 app.MapControllers();
+
+app.MapGet(pattern: "/", handler: () => TypedResults.Redirect(url: "/swagger", permanent: true));
 
 await app.RunAsync();
 

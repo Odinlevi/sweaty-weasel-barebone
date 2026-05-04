@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Modules.ClientRegistry.Domain.SeedWork.Models;
 
-namespace Modules.ClientRegistry.WebApi.Infrastructure;
+namespace Modules.ClientRegistry.WebApi.Infrastructures.JsonConverters;
 
 public class IdentityJsonConverterFactory : JsonConverterFactory
 {

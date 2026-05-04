@@ -30,7 +30,7 @@ public class ClientsController(ISender sender) : ControllerBase
     ///
     /// </remarks>
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(type: typeof(CreateClientResult), statusCode: StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> CreateClient([FromBody] CreateClientCommand command)
@@ -84,7 +84,7 @@ public class ClientsController(ISender sender) : ControllerBase
     ///
     /// </remarks>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(GetClientCollectionResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> SearchClientsByName(
@@ -119,7 +119,7 @@ public class ClientsController(ISender sender) : ControllerBase
     ///
     /// </remarks>
     [HttpPut]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(UpdateClientResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -141,7 +141,7 @@ public class ClientsController(ISender sender) : ControllerBase
     ///
     /// </remarks>
     [HttpDelete("{clientId}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(type: typeof(DeleteClientResult), statusCode: StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
