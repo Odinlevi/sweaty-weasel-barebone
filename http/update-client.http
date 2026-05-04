@@ -1,0 +1,8 @@
+### PUT update client name
+PUT http://localhost:5234/api/clients
+Content-Type: application/json
+
+{
+  "clientId": "f72d24f3-17c4-4ca4-a8e5-63fa1a37cd16",
+  "clientName": "Updated Client Name"
+}
